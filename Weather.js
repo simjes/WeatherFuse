@@ -26,7 +26,7 @@ var currentIcon = Observable("");
 Timer.create(function() {
     isItNight();
     //getCurrentWeather();
-    currentIcon.value = "sun"; //TODO: get current weather
+    currentIcon.value = "rainyCloud"; //TODO: get current weather
 }, 1, false);
 
 //Check daytime status
@@ -36,7 +36,7 @@ Timer.create(function() {
 
 //Check weather status
 Timer.create(function() { //TODO: query for weather
-    switch (currentIcon.value) {
+    /*switch (currentIcon.value) {
         case "sun":
             currentIcon.value = "cloud";
             break;
@@ -50,9 +50,12 @@ Timer.create(function() { //TODO: query for weather
             currentIcon.value="cloudyMoon";
             break;
         case "cloudyMoon":
+            currentIcon.value="rainyCloud";
+            break;
+        case "rainyCloud":
             currentIcon.value="sun";
             break;
-    }
+    }*/
 }, 2000, true);
 
 function isItNight() {

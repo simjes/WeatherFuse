@@ -21,6 +21,9 @@
 					<Case String="cloudyMoon">
 						<CloudyMoonIcon Margin="0,40,0,20" />
 					</Case>
+					<Case String="rainyCloud">
+						<RainyCloud Margin="0,40,0,20" />
+					</Case>
 				</Match>
 				<Text Value="Sinsen, Oslo" TextColor="White" TextAlignment="Center" FontSize="42"/>
 				<Text Value="10. Aug 16 - 14:05" TextColor="White" TextAlignment="Center" FontSize="30"/>

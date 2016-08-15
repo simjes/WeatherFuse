@@ -11,9 +11,39 @@
         <SunIcon Width="100%" />
     </Image>
 
-    <!--Image ux:Class="RainIcon" ux:Name="rainIcon" Alignment="Center">
-        <CloudIcon/>
-    </Image-->
+    <Image ux:Class="RainIcon" ux:Name="rainIcon" Alignment="Center" File="Assets/rain2.png" Color="#0091EA"/>
+
+    <Image ux:Class="RainyCloud" ux:Name="rainyCloud" Width="30%" Alignment="Center">
+        <CloudIcon Width="100%"/>
+        <RainIcon ux:Name="firstDrop" Offset="-25,0">
+            <Translation ux:Name="firstDropTranslation" />
+        </RainIcon>
+        <RainIcon ux:Name="secondDrop" Offset="0,0">
+            <Translation ux:Name="secondDropTranslation" />
+        </RainIcon>
+        <RainIcon ux:Name="thirdDrop" Offset="25,0">
+            <Translation ux:Name="thirdDropTranslation" />
+        </RainIcon>
+        <RainIcon ux:Name="fourthDrop" Offset="-12,0">
+            <Translation ux:Name="fourthDropTranslation" />
+        </RainIcon>
+        <RainIcon ux:Name="fifthDrop" Offset="12,0">
+            <Translation ux:Name="fifthDropTranslation" />
+        </RainIcon>
+        <WhileTrue Value="true">
+            <Cycle Frequency="1.1" Low="0" High="80" Target="firstDropTranslation.Y"  Waveform="Sawtooth"/>
+            <Cycle Frequency="1" Low="0" High="80" Target="secondDropTranslation.Y"  Waveform="Sawtooth"/>
+            <Cycle Frequency="1.2" Low="0" High="80" Target="thirdDropTranslation.Y"  Waveform="Sawtooth"/>
+            <Cycle Frequency=".65" Low="0" High="80" Target="fourthDropTranslation.Y"  Waveform="Sawtooth"/>
+            <Cycle Frequency=".75" Low="0" High="80" Target="fifthDropTranslation.Y"  Waveform="Sawtooth"/>
+
+            <Cycle Target="firstDrop.Opacity" Frequency="1.1"  Low="5" High="0" Waveform="Sawtooth" />
+			<Cycle Target="secondDrop.Opacity" Frequency="1" Low="5" High="0" Waveform="Sawtooth" />
+			<Cycle Target="thirdDrop.Opacity" Frequency="1.2" Low="5" High="0" Waveform="Sawtooth" />
+			<Cycle Target="fourthDrop.Opacity" Frequency=".65" Low="5" High="0" Waveform="Sawtooth" />
+            <Cycle Target="fifthDrop.Opacity" Frequency=".75" Low="5" High="0" Waveform="Sawtooth" />
+        </WhileTrue>
+    </Image>
 
     <Image ux:Class="MoonIcon" ux:Name="moonIcon" Alignment="Center" Width="30%" File="Assets/moon.png" Color="#E0E0E0"/>
 
