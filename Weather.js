@@ -44,7 +44,13 @@ Timer.create(function() { //TODO: query for weather
             currentIcon.value = "cloudySun";
             break;
         case "cloudySun":
-            currentIcon.value = "sun";
+            currentIcon.value = "moon";
+            break;
+        case "moon":
+            currentIcon.value="cloudyMoon";
+            break;
+        case "cloudyMoon":
+            currentIcon.value="sun";
             break;
     }
 }, 2000, true);

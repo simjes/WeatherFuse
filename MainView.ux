@@ -1,21 +1,6 @@
 <App>
 	<JavaScript File="Weather.js" />
-	<Image ux:Class="SunIcon" ux:Name="sunIcon"  Width="30%" Alignment="Center" File="Assets/sun.png" Color="#FFEE58" >
-		<WhileTrue Value="true">
-			<Spin Frequency="0.1" Target="sunIcon" />
-		</WhileTrue>
-	</Image>
-
-	<Image ux:Class="CloudIcon" ux:Name="cloudIcon"  Width="30%" Alignment="Center" File="Assets/clouds.png" />
-
-	<Image ux:Class="CloudySunIcon" ux:Name="cloudySunIcon" Width="30%" Alignment="Center">
-		<CloudIcon Offset="10, 10" Width="100%"/>
-		<SunIcon Width="100%" />
-	</Image>
-
-	<Image ux:Class="RainIcon" ux:Name="rainIcon" Alignment="Center">
-		<CloudIcon/>
-	</Image>
+	<ux:Include File="Icons.ux" />
 
 	<DockPanel>
 		<Rectangle Fill="{skyColor}" Height="50%" Width="100%" Alignment="Top">
@@ -30,10 +15,16 @@
 					<Case String="cloudySun">
 						<CloudySunIcon Margin="0,40,0,20" />
 					</Case>
+					<Case String="moon">
+						<MoonIcon Margin="0,40,0,20" />
+					</Case>
+					<Case String="cloudyMoon">
+						<CloudyMoonIcon Margin="0,40,0,20" />
+					</Case>
 				</Match>
 				<Text Value="Sinsen, Oslo" TextColor="White" TextAlignment="Center" FontSize="42"/>
 				<Text Value="10. Aug 16 - 14:05" TextColor="White" TextAlignment="Center" FontSize="30"/>
-				<Text Value="20 C" TextColor="White" TextAlignment="Center" FontSize="42"/>
+				<Text Value="20 °C" TextColor="White" TextAlignment="Center" FontSize="42"/>
 			</StackPanel>
 		</Rectangle>
 		<Rectangle Fill="{groundColor}" Height="50%" Width="100%" Alignment="Bottom">
