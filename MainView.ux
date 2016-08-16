@@ -5,7 +5,7 @@
 	<DockPanel>
 		<Rectangle Fill="{skyColor}" Height="50%" Width="100%" Alignment="Top">
 			<StackPanel>
-				<Match Value="{currentIcon}">
+				<Match Value="{currentInfo.icon}">
 					<Case String="sun">
 						<SunIcon Margin="0,40,0,20" />
 					</Case>
@@ -25,9 +25,9 @@
 						<RainyCloud Margin="0,40,0,20" />
 					</Case>
 				</Match>
-				<Text Value="Sinsen, Oslo" TextColor="White" TextAlignment="Center" FontSize="42"/>
-				<Text Value="10. Aug 16 - 14:05" TextColor="White" TextAlignment="Center" FontSize="30"/>
-				<Text Value="20 °C" TextColor="White" TextAlignment="Center" FontSize="42"/>
+				<Text Value="{currentInfo.city}" TextColor="White" TextAlignment="Center" FontSize="42"/>
+				<Text Value="{currentInfo.time}" TextColor="White" TextAlignment="Center" FontSize="30"/>
+				<Text Value="{currentInfo.temp}" TextColor="White" TextAlignment="Center" FontSize="42"/>
 			</StackPanel>
 		</Rectangle>
 		<Rectangle Fill="{groundColor}" Height="50%" Width="100%" Alignment="Bottom">

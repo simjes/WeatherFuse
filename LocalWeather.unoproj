@@ -2,9 +2,11 @@
   "RootNamespace":"",
   "Packages": [
     "Fuse",
-    "FuseJS"
+    "FuseJS",
+    "Fuse.GeoLocation"
   ],
   "Includes": [
-    "*"
+    "*",
+    "*.json:Bundle"
   ]
 }
