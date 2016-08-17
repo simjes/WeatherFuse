@@ -17,7 +17,13 @@ var groundColor = Observable();
 var currentIcon = Observable("");
 var fullUrl = "";
 var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?";
-var currentInfo = Observable();
+var currentInfo = Observable({
+    "city": "",
+    "temp": "",
+    "icon": ""
+});
+var clock = Observable("");
+var lastHour;
 var currentWeather = Observable();
 /*Lifecycle.onEnteringForeground = function() {
     console.log("test");
@@ -25,47 +31,19 @@ var currentWeather = Observable();
     isItNight();
 }; */
 
-
-
 //temp init, since lifecycle event not working
 Timer.create(function() {
     var apiKey = JSON.parse(Bundle.readSync("config.json")).api;
     fullUrl = weatherUrl + "APPID=" + apiKey;
+    lastHour = new Date().getHours();
+    console.log("last hour: " + lastHour);
 
     getWeatherByLocation();
+    readableDateTime();
 
     isItNight();
-    currentIcon.value = "rainyCloud"; //TODO: get current weather
+    //lastHour = 21;
 }, 1, false);
-
-//Check daytime status
-Timer.create(function() {
-    isItNight();
-}, 1800000, true);
-
-//Check weather status
-/*Timer.create(function() { //TODO: query for weather
-    switch (currentIcon.value) {
-        case "sun":
-            currentIcon.value = "cloud";
-            break;
-        case "cloud":
-            currentIcon.value = "cloudySun";
-            break;
-        case "cloudySun":
-            currentIcon.value = "moon";
-            break;
-        case "moon":
-            currentIcon.value="cloudyMoon";
-            break;
-        case "cloudyMoon":
-            currentIcon.value="rainyCloud";
-            break;
-        case "rainyCloud":
-            currentIcon.value="sun";
-            break;
-    }
-}, 5000, true);*/
 
 function isItNight() {
     var currentTime = new Date();
@@ -91,7 +69,7 @@ function getWeatherByLocation() {
 
 function getCurrentWeather(lat, lng) {
     fetch(fullUrl + "&lat=" + lat + "&lon=" + lng).then(function(response) {
-        console.log(response);
+        //console.log(response);
         var status = response.status;  // Get the HTTP status code
         console.log(status);
         var response_ok = response.ok; // Is response.status in the 200-range?
@@ -102,7 +80,6 @@ function getCurrentWeather(lat, lng) {
         //console.log(currentWeather.value.city.name);
         currentInfo.value = {
             "city": forecast.city.name,
-            "time": forecast.list[0].dt_txt,//readableDateTime(1471381200), //forecast.list[0].dt
             "temp": Math.floor(forecast.list[0].main.temp - 273.15) + " °C",
             "icon": setCurrentIcon(forecast.list[0].weather[0].icon)
         };
@@ -124,9 +101,15 @@ function setCurrentIcon(forecastIcon) {
             return "cloudySun";
         case "02n":
             return "cloudyMoon";
-        case "03d" || "03n" || "04d" || "04n":
+        case "03d":
+        case "03n":
+        case "04d":
+        case "04n":
             return "cloud";
-        case "09d" || "09n" || "10d" || "10n":
+        case "09d":
+        case "09n":
+        case "10d":
+        case "10n":
             return "rainyCloud";
         //case "11d" || "11n": lightning
         //case "13d" || "13n": snow
@@ -134,16 +117,24 @@ function setCurrentIcon(forecastIcon) {
     }
 }
 
-//TODO: fix it
-function readableDateTime(unixTime) {
-    var dateTime = new Date(unixTime*1000);
-    var str = dateTime.getDate() + "." + dateTime.getMonth() + "." + dateTime.getFullYear();
-    return str;
+function readableDateTime() {
+    var dateTime = new Date();
+    var minutes = dateTime.getMinutes().toString().length == 1 ? '0' + dateTime.getMinutes() : dateTime.getMinutes();
+    var hours = dateTime.getHours().toString().length == 1 ? '0' + dateTime.getHours() : dateTime.getHours();
+    clock.value = dateTime.getDate() + "." + dateTime.getMonth() + "." + dateTime.getFullYear() + " " + hours + ":" + minutes;
+    if (hours !== lastHour) {
+        lastHour = hours;
+        console.log("getting new data");
+        getWeatherByLocation();
+        isItNight();
+    }
+    setTimeout(readableDateTime, 500);
 }
 
 module.exports = {
     skyColor: skyColor,
     groundColor: groundColor,
     currentIcon: currentIcon,
-    currentInfo: currentInfo
+    currentInfo: currentInfo,
+    clock: clock
 };

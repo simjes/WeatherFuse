@@ -26,7 +26,7 @@
 					</Case>
 				</Match>
 				<Text Value="{currentInfo.city}" TextColor="White" TextAlignment="Center" FontSize="42"/>
-				<Text Value="{currentInfo.time}" TextColor="White" TextAlignment="Center" FontSize="30"/>
+				<Text Value="{clock}" TextColor="White" TextAlignment="Center" FontSize="30"/>
 				<Text Value="{currentInfo.temp}" TextColor="White" TextAlignment="Center" FontSize="42"/>
 			</StackPanel>
 		</Rectangle>
