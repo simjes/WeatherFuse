@@ -3,7 +3,7 @@
 	<ux:Include File="Icons.ux" />
 
 	<DockPanel>
-		<Rectangle Fill="{skyColor}" Height="50%" Width="100%" Alignment="Top">
+		<Rectangle Fill="{colorOfSky}" Height="50%" Width="100%" Alignment="Top">
 			<StackPanel>
 				<Match Value="{currentInfo.icon}">
 					<Case String="sun">
@@ -30,7 +30,7 @@
 				<Text Value="{currentInfo.temp}" TextColor="White" TextAlignment="Center" FontSize="42"/>
 			</StackPanel>
 		</Rectangle>
-		<Rectangle Fill="{groundColor}" Height="50%" Width="100%" Alignment="Bottom">
+		<Rectangle Fill="#4CAF50" Height="50%" Width="100%" Alignment="Bottom">
 			<StackPanel>
 			</StackPanel>
 		</Rectangle>

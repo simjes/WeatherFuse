@@ -11,10 +11,7 @@ var colors = {
     groundNight: "#2C882F"
 };
 
-
-var skyColor = Observable();
-var groundColor = Observable();
-var currentIcon = Observable("");
+var currentIcon = Observable();
 var fullUrl = "";
 var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?";
 var currentInfo = Observable({
@@ -22,9 +19,11 @@ var currentInfo = Observable({
     "temp": "",
     "icon": ""
 });
-var clock = Observable("");
+var clock = Observable();
 var lastHour;
 var currentWeather = Observable();
+var colorOfSky = Observable(colors.skyDay);
+var colorOfGround = Observable(colors.groundDay);
 /*Lifecycle.onEnteringForeground = function() {
     console.log("test");
     debug_log("foreground");
@@ -33,6 +32,7 @@ var currentWeather = Observable();
 
 //temp init, since lifecycle event not working
 Timer.create(function() {
+    console.log("Start getting key");
     var apiKey = JSON.parse(Bundle.readSync("config.json")).api;
     fullUrl = weatherUrl + "APPID=" + apiKey;
     lastHour = new Date().getHours();
@@ -42,19 +42,16 @@ Timer.create(function() {
     readableDateTime();
 
     isItNight();
-    //lastHour = 21;
 }, 1, false);
 
 function isItNight() {
     var currentTime = new Date();
     if (currentTime.getHours() >= 19 || currentTime.getHours() < 9) {
-        skyColor.value = colors.skyNight;
-        groundColor.value = colors.groundNight;
-        return true;
+        colorOfSky.value = colors.skyNight;
+        colorOfGround.value = colors.groundNight;
     } else {
-        skyColor.value = colors.skyDay;
-        groundColor.value = colors.groundDay;
-        return false;
+        colorOfSky.value = colors.skyDay;
+        colorOfGround.value = colors.groundDay;
     }
 }
 
@@ -132,9 +129,9 @@ function readableDateTime() {
 }
 
 module.exports = {
-    skyColor: skyColor,
-    groundColor: groundColor,
     currentIcon: currentIcon,
     currentInfo: currentInfo,
-    clock: clock
+    clock: clock,
+    colorOfSky: colorOfSky,
+    colorOfGround: colorOfGround
 };
