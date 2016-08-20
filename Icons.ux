@@ -52,4 +52,25 @@
         <MoonIcon Width="100%" />
     </Image>
 
+    <Match ux:Class="IconSwitch" ux:Name="iconSwitch">
+        <Case String="sun">
+            <SunIcon Margin="0,40,0,20" />
+        </Case>
+        <Case String="cloud">
+            <CloudIcon Margin="0,40,0,20" />
+        </Case>
+        <Case String="cloudySun">
+            <CloudySunIcon Margin="0,40,0,20" />
+        </Case>
+        <Case String="moon">
+            <MoonIcon Margin="0,40,0,20" />
+        </Case>
+        <Case String="cloudyMoon">
+            <CloudyMoonIcon Margin="0,40,0,20" />
+        </Case>
+        <Case String="rainyCloud">
+            <RainyCloud Margin="0,40,0,20" />
+        </Case>
+    </Match>
+
 </Panel>

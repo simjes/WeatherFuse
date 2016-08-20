@@ -15,10 +15,11 @@ var currentIcon = Observable();
 var fullUrl = "";
 var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?";
 var currentInfo = Observable({
-    "city": "",
-    "temp": "",
-    "icon": ""
+    city: "",
+    temp: "",
+    icon: ""
 });
+var nextForecast = Observable();
 var clock = Observable();
 var lastHour;
 var currentWeather = Observable();
@@ -76,9 +77,35 @@ function getCurrentWeather(lat, lng) {
         console.log(JSON.stringify(forecast));
         //console.log(currentWeather.value.city.name);
         currentInfo.value = {
-            "city": forecast.city.name,
-            "temp": Math.floor(forecast.list[0].main.temp - 273.15) + " °C",
-            "icon": setCurrentIcon(forecast.list[0].weather[0].icon)
+            city: forecast.city.name,
+            temp: Math.floor(forecast.list[0].main.temp - 273.15) + " °C",
+            icon: setCurrentIcon(forecast.list[0].weather[0].icon)
+        };
+        /*for (var i = 0; i < 3; i++) {
+            nextForecast.value[i] = {
+                clock: "",
+                temp: Math.floor(forecast.list[i+1].main.temp - 273.15) + " °C",
+                icon: setCurrentIcon(forecast.list[i+1].weather[0].icon)
+            };
+            debug_log(nextForecast.value[i].icon);
+        }*/
+
+        nextForecast.value = {
+            three: {
+                clock: new Date(forecast.list[1].dt_txt).getHours(),
+                icon: setCurrentIcon(forecast.list[1].weather[0].icon),
+                temp: Math.floor(forecast.list[1].main.temp - 273.15) + " °C"
+            },
+            six: {
+                clock: new Date(forecast.list[2].dt_txt).getHours(),
+                icon: setCurrentIcon(forecast.list[2].weather[0].icon),
+                temp: Math.floor(forecast.list[2].main.temp - 273.15) + " °C"
+            },
+            nine: {
+                clock: new Date(forecast.list[3].dt_txt).getHours(),
+                icon: setCurrentIcon(forecast.list[3].weather[0].icon),
+                temp: Math.floor(forecast.list[3].main.temp - 273.15) + " °C"
+            }
         };
         // Do something with the result
     }).catch(function(err) {
@@ -133,5 +160,6 @@ module.exports = {
     currentInfo: currentInfo,
     clock: clock,
     colorOfSky: colorOfSky,
-    colorOfGround: colorOfGround
+    colorOfGround: colorOfGround,
+    nextForecast: nextForecast
 };

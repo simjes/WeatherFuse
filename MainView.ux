@@ -5,36 +5,30 @@
 	<DockPanel>
 		<Rectangle Fill="{colorOfSky}" Height="50%" Width="100%" Alignment="Top">
 			<StackPanel>
-				<Match Value="{currentInfo.icon}">
-					<Case String="sun">
-						<SunIcon Margin="0,40,0,20" />
-					</Case>
-					<Case String="cloud">
-						<CloudIcon Margin="0,40,0,20" />
-					</Case>
-					<Case String="cloudySun">
-						<CloudySunIcon Margin="0,40,0,20" />
-					</Case>
-					<Case String="moon">
-						<MoonIcon Margin="0,40,0,20" />
-					</Case>
-					<Case String="cloudyMoon">
-						<CloudyMoonIcon Margin="0,40,0,20" />
-					</Case>
-					<Case String="rainyCloud">
-						<RainyCloud Margin="0,40,0,20" />
-					</Case>
-				</Match>
+				<IconSwitch Value="{currentInfo.icon}" />
 				<Text Value="{currentInfo.city}" TextColor="White" TextAlignment="Center" FontSize="42"/>
 				<Text Value="{clock}" TextColor="White" TextAlignment="Center" FontSize="30"/>
 				<Text Value="{currentInfo.temp}" TextColor="White" TextAlignment="Center" FontSize="42"/>
 			</StackPanel>
 		</Rectangle>
 		<Rectangle Fill="#4CAF50" Height="50%" Width="100%" Alignment="Bottom">
-			<StackPanel>
-			</StackPanel>
+			<DockPanel>
+				<DockPanel Opacity=".6" Height="50%" Width="20%" Background="Black" Alignment="Left" Padding="0,10,0,10" Margin="40,0,0,0">
+					<Text TextColor="White" Value="{nextForecast.three.clock}" TextAlignment="Center" Alignment="Top"/>
+					<IconSwitch Value="{nextForecast.three.icon}" />
+					<Text TextColor="White" Value="{nextForecast.three.temp}" TextAlignment="Center" Alignment="Bottom"/>
+				</DockPanel>
+				<DockPanel Opacity=".6" Height="50%" Width="20%" Background="Black" Alignment="Center" Padding="0,10,0,10" Margin="30,0,30,0">
+					<Text TextColor="White" Value="{nextForecast.six.clock}" TextAlignment="Center" Alignment="Top"/>
+					<IconSwitch Value="{nextForecast.six.icon}" />
+					<Text TextColor="White" Value="{nextForecast.six.temp}" TextAlignment="Center" Alignment="Bottom"/>
+				</DockPanel>
+				<DockPanel Opacity=".6" Height="50%" Width="20%" Background="Black" Alignment="Right" Padding="0,10,0,10" Margin="0,0,40,0">
+					<Text TextColor="White" Value="{nextForecast.nine.clock}" TextAlignment="Center" Alignment="Top"/>
+					<IconSwitch Value="{nextForecast.nine.icon}" />
+					<Text TextColor="White" Value="{nextForecast.nine.temp}" TextAlignment="Center" Alignment="Bottom"/>
+				</DockPanel>
+			</DockPanel>
 		</Rectangle>
-
-
 	</DockPanel>
 </App>
