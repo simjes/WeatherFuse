@@ -13,20 +13,23 @@
 		</Rectangle>
 		<Rectangle Fill="#4CAF50" Height="50%" Width="100%" Alignment="Bottom">
 			<DockPanel>
-				<DockPanel Opacity=".6" Height="50%" Width="20%" Background="Black" Alignment="Left" Padding="0,10,0,10" Margin="40,0,0,0">
+				<DockPanel Height="50%" Width="20%" Alignment="Left" Padding="0,10,0,10" Margin="40,0,0,0">
 					<Text TextColor="White" Value="{nextForecast.three.clock}" TextAlignment="Center" Alignment="Top"/>
 					<IconSwitch Value="{nextForecast.three.icon}" />
 					<Text TextColor="White" Value="{nextForecast.three.temp}" TextAlignment="Center" Alignment="Bottom"/>
+					<Rectangle Background="Black" Opacity=".5" Height="100%" />
 				</DockPanel>
-				<DockPanel Opacity=".6" Height="50%" Width="20%" Background="Black" Alignment="Center" Padding="0,10,0,10" Margin="30,0,30,0">
+				<DockPanel Height="50%" Width="20%" Alignment="Center" Padding="0,10,0,10" Margin="30,0,30,0">
 					<Text TextColor="White" Value="{nextForecast.six.clock}" TextAlignment="Center" Alignment="Top"/>
 					<IconSwitch Value="{nextForecast.six.icon}" />
 					<Text TextColor="White" Value="{nextForecast.six.temp}" TextAlignment="Center" Alignment="Bottom"/>
+					<Rectangle Background="Black" Opacity=".5" Height="100%" />
 				</DockPanel>
-				<DockPanel Opacity=".6" Height="50%" Width="20%" Background="Black" Alignment="Right" Padding="0,10,0,10" Margin="0,0,40,0">
+				<DockPanel Height="50%" Width="20%" Alignment="Right" Padding="0,10,0,10" Margin="0,0,40,0">
 					<Text TextColor="White" Value="{nextForecast.nine.clock}" TextAlignment="Center" Alignment="Top"/>
 					<IconSwitch Value="{nextForecast.nine.icon}" />
 					<Text TextColor="White" Value="{nextForecast.nine.temp}" TextAlignment="Center" Alignment="Bottom"/>
+					<Rectangle Background="Black" Opacity=".5" Height="100%" />
 				</DockPanel>
 			</DockPanel>
 		</Rectangle>

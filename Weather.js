@@ -47,7 +47,7 @@ Timer.create(function() {
 
 function isItNight() {
     var currentTime = new Date();
-    if (currentTime.getHours() >= 19 || currentTime.getHours() < 9) {
+    if (currentTime.getHours() >= 19 || currentTime.getHours() < 6) {
         colorOfSky.value = colors.skyNight;
         colorOfGround.value = colors.groundNight;
     } else {
@@ -89,20 +89,23 @@ function getCurrentWeather(lat, lng) {
             };
             debug_log(nextForecast.value[i].icon);
         }*/
+        clockThree = new Date(forecast.list[1].dt_txt).getHours();
+        clockSix = new Date(forecast.list[2].dt_txt).getHours();
+        clockNine = new Date(forecast.list[3].dt_txt).getHours();
 
         nextForecast.value = {
             three: {
-                clock: new Date(forecast.list[1].dt_txt).getHours(),
+                clock: clockThree.toString().length > 1 ? clockThree + ":00" : "0" + clockThree + ":00",
                 icon: setCurrentIcon(forecast.list[1].weather[0].icon),
                 temp: Math.floor(forecast.list[1].main.temp - 273.15) + " °C"
             },
             six: {
-                clock: new Date(forecast.list[2].dt_txt).getHours(),
+                clock: clockSix.toString().length > 1 ? clockSix + ":00" : "0" + clockSix + ":00",
                 icon: setCurrentIcon(forecast.list[2].weather[0].icon),
                 temp: Math.floor(forecast.list[2].main.temp - 273.15) + " °C"
             },
             nine: {
-                clock: new Date(forecast.list[3].dt_txt).getHours(),
+                clock: clockNine.toString().length > 1 ? clockNine + ":00" : "0" + clockNine + ":00",
                 icon: setCurrentIcon(forecast.list[3].weather[0].icon),
                 temp: Math.floor(forecast.list[3].main.temp - 273.15) + " °C"
             }

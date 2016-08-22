@@ -13,7 +13,7 @@
 
     <Image ux:Class="RainIcon" ux:Name="rainIcon" Alignment="Center" File="Assets/rain2.png" Color="#0091EA"/>
 
-    <Image ux:Class="RainyCloud" ux:Name="rainyCloud" Width="30%" Alignment="Center">
+    <Image ux:Class="RainyCloudIcon" ux:Name="rainyCloudIcon" Width="30%" Alignment="Center">
         <CloudIcon Width="100%"/>
         <RainIcon ux:Name="firstDrop" Offset="-25,0">
             <Translation ux:Name="firstDropTranslation" />
@@ -52,7 +52,7 @@
         <MoonIcon Width="100%" />
     </Image>
 
-    <Match ux:Class="IconSwitch" ux:Name="iconSwitch">
+    <Match ux:Class="IconSwitch">
         <Case String="sun">
             <SunIcon Margin="0,40,0,20" />
         </Case>
@@ -69,7 +69,7 @@
             <CloudyMoonIcon Margin="0,40,0,20" />
         </Case>
         <Case String="rainyCloud">
-            <RainyCloud Margin="0,40,0,20" />
+            <RainyCloudIcon Margin="0,40,0,20" />
         </Case>
     </Match>
 
